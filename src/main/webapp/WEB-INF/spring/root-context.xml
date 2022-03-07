@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<context:component-scan base-package="spring.conf"/>
+	
+	<!-- chat -->
+	<context:component-scan base-package="chat.bean"/>
+	<context:component-scan base-package="chat.dao"/>
+	<context:component-scan base-package="chat.service"/>
+	
+	<!-- Board -->
+	<context:component-scan base-package="board.bean"/>
+	<context:component-scan base-package="board.dao"/>
+	<context:component-scan base-package="board.service"/>
+	
+	<!-- index -->
+	<context:component-scan base-package="index.bean"/>
+	<context:component-scan base-package="index.dao"/>
+	<context:component-scan base-package="index.service"/>
+	
+	<!-- Member -->
+	<context:component-scan base-package="member.bean"/>
+	<context:component-scan base-package="member.dao"/>
+	<context:component-scan base-package="member.service"/>
+	
+	<!-- Product -->
+	<context:component-scan base-package="product.bean"/>
+	<context:component-scan base-package="product.dao"/>
+	<context:component-scan base-package="product.service"/>
+	
+	<!-- Store -->
+	<context:component-scan base-package="store.bean"/>
+	<context:component-scan base-package="store.dao"/>
+	<context:component-scan base-package="store.service"/>
+	
+	<!-- Notice -->
+	<context:component-scan base-package="notice.bean"/>
+	<context:component-scan base-package="notice.dao"/>
+	<context:component-scan base-package="notice.service"/>
+
+	<!-- admin -->
+	<context:component-scan base-package="admin.bean"/>
+	<context:component-scan base-package="admin.dao"/>
+	<context:component-scan base-package="admin.service"/>
+	
+	<!-- WebSocket -->
+	<websocket:handlers allowed-origins="*" >
+        <websocket:mapping handler="handlerChat" path="/chat"/>
+		<websocket:handshake-interceptors> <!-- HttpSession의 파라미터를 WebSocketSession에 전달 및 1:1채팅, 알림 구현 -->
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
+        <websocket:sockjs websocket-enabled="true"/>
+    </websocket:handlers>
+    
+    <bean id="handlerChat" class="chat.service.HandlerChat" />
+
+	<!-- 이메일 인증 -->
+	<bean id="mainSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+	    <property name="port" value="587" />
+	    <property name="username" value="brighthannah12@gmail.com" />
+	    <property name="password" value="anabada0215!" />
+	    <property name="javaMailProperties">
+	    <props>
+	      <prop key="mail.transport.protocol">smtp</prop>
+          <prop key="mail.smtp.auth">true</prop>
+          <prop key="mail.smtp.starttls.enable">true</prop>
+          <prop key="mail.debug">true</prop>
+        </props>
+        </property>
+	</bean>
+</beans>

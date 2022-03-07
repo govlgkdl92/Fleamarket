@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security-5.3.xsd">
+	
+   	<security:http auto-config="true" use-expressions="true">
+    	<!-- [ 권한별 접근 가능한 url 등록 ] -->
+    	<security:intercept-url pattern="/resources/**" access="permitAll" /> <!-- 정적리소스는 접근 허용 (로그인 화면 안깨지게) -->
+        <security:intercept-url pattern="/chat/**" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/store/**" access="hasAnyRole('ROLE_USER', 'ROLE_ADMIN')"/> <!-- 다른 사람 상점은 볼 수 있도록 수정하기 -->
+        <security:intercept-url pattern="/product/registForm" access="hasRole('ROLE_USER')"/>
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/> <!-- 관리자페이지는 관리자만 접근 -->
+        <security:intercept-url pattern="/**" access="permitAll"/>
+
+        <!-- [ 로그인 설정(사용자 지정) ] -->
+        <security:form-login login-page="/member/loginForm"
+							 login-processing-url="/member/login"
+							 default-target-url="/"
+							 authentication-failure-handler-ref="memberLoginFailHandler"
+ 							 username-parameter="mem_id"
+							 password-parameter="mem_pwd"/>
+							
+		<!-- [ 로그아웃 설정 ] -->	
+        <security:logout logout-url="/member/logout"
+        				 logout-success-url="/"
+        				 invalidate-session="true"
+        				 delete-cookies="true" />
+        
+        <!-- [ 접근 권한 에러 페이지(403에러 대체) ] -->
+        <security:access-denied-handler error-page="/member/accessDenied"/>
+        
+        <!-- [ 중복 로그인 방지 ] -->
+		<security:session-management>
+			<security:concurrency-control max-sessions="1" expired-url="/member/accessDuplicated" />
+		</security:session-management>
+		
+		<!-- [ 자동 로그인 ] -->
+		<security:remember-me data-source-ref="dataSource" 
+				              remember-me-parameter="remember-me" 
+				              token-validity-seconds="604800"/> <!-- 7일 -->
+		
+		<!-- [ csrf 사용 여부(SSL(보안-https)과 관련) ] -->
+        <security:csrf disabled="true"/>
+        
+    </security:http>
+ 
+ 	<!-- [ 패스워드 단방향 암호화 ] -->
+	<bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+    <security:authentication-manager>
+    	<!-- [ 커스텀클래스 참조하는 DB 인증 방식 ] -->
+   		<security:authentication-provider user-service-ref="memberServiceImpl">
+		</security:authentication-provider>
+    </security:authentication-manager>
+
+</beans>

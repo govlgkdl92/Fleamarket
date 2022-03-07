@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="noticeSQL">
+
+<!--공지사항등록 -->
+	<insert id="noticeBoardWrite" parameterType="java.util.Map">
+		insert into noticeBoard(seq,select1,select2,subject,adminName,content) values(seq_board.nextval,#{select1},#{select2},#{subject},#{adminName},#{content})
+	</insert>
+<!-- 공지사항 -->
+	<select id="getFagContent" parameterType="Integer" resultType="notice.bean.NoticeDTO">
+		select * from noticeBoard where select1=2 and select2=#{select2}
+	</select>
+	
+	
+<!-- [1:1문의]============================================================================== -->
+	
+<!-- qna 대분류 -->
+	<select id="getMainCate" resultType="notice.bean.QnaCateDTO">
+	 	select qnaCate_name,qnaCate_code from qnaCate where qnaCate_parent is null order by qnaCate_code 
+	</select>
+<!-- qna 소분류 -->
+	<select id="getSubCate" parameterType="Integer" resultType="notice.bean.QnaCateDTO">
+	 	select qnaCate_name,qnaCate_code from qnaCate where qnaCate_parent=#{qnaCate_mainCode}
+	</select>
+
+<!-- 1:1문의 글등록 -->
+	<insert id="writeQna" parameterType="notice.bean.QnaDTO" >
+		insert into qna (qna_seq, qnaCate_main, 
+						qnaCate_sub, mem_id, qna_content,
+						qna_img1,qna_img2,
+						qna_logtime)
+						 values (qna_seq.nextval, #{qnaCate_mainName}, 
+						 		#{qnaCate_sub}, #{mem_id}, #{qna_content},
+								#{qna_img1},#{qna_img2},
+								sysdate)
+	</insert>
+<!-- 1:1문의 목록 불러오기 -->
+	<select id="getQnaList" parameterType="String" resultType="notice.bean.QnaDTO">
+	 	select * from qna where mem_id = #{mem_id} order by qna_logtime desc
+	</select>
+
+
+
+</mapper>

@@ -1,0 +1,489 @@
+@charset "UTF-8";
+/************* common - 모달 *************/
+a {
+    color: rgb(33, 33, 33);
+    text-decoration: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+button {
+    background-color: transparent;
+    cursor: pointer;
+    outline: none;
+    border-color: transparent;
+}
+div {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* common */
+body, input, textarea, select, button {
+    -webkit-font-smoothing: antialiased;
+    direction: ltr;
+    text-align: left;
+    color: rgb(33, 33, 33);
+    letter-spacing: -0.5px;
+    outline: 0px;
+    border: 0px;
+}
+.reviewsTop {
+	font-size: 18px;
+    padding: 50px 0px 20px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+}
+.reviewsNum {
+	font-size: 13pt;
+	color: #0a58ca;
+}
+.reviewWrap {
+	padding: 20px;
+    display: flex;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+#reviewProfile {
+	border-radius: 50%;
+} 
+#reviewContent {
+	flex: 1 1 0%;
+}
+.reviewStoreDetail {
+	display: flex;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    justify-content: center;
+    height: 60px;
+}
+.reviewStoreDetailTop {
+	display: flex;
+    margin-bottom: 10px;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    align-items: center;
+}
+.reviewDate {
+	font-size: 13px;
+    color: rgb(204, 204, 204);
+}
+#reviewContent > .storeStarsWrap {
+	display: block;
+}
+.storeStars {
+	display: flex;
+}
+.reviewProductBtn {
+	padding: 0px 10px;
+    height: 30px;
+    border: 1px solid rgb(238, 238, 238);
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-size: 13px;
+    background: rgb(255, 255, 255);
+    color: rgb(102, 102, 102);
+}
+.reviewProductBtn > img {
+	margin-left: 10px;
+}
+.reviewContent {
+	margin: 20px 0px;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+.reviewSingo {
+	display: flex;
+}
+.reviewSingoBtn {
+	color: rgb(136, 136, 136);
+    font-size: 13px;
+    display: flex;
+    -webkit-box-align: unset;
+    align-items: unset;
+    margin-right: 25px;
+    position: relative;
+}
+.reviewSingoBtn > img {
+	margin-right: 4px;
+}
+.reviewSingoBtn:last-child::after {
+    border-right: 0px;
+}
+.reviewSingoBtn::after {
+    content: "";
+    width: 1px;
+    height: 13px;
+    position: absolute;
+    border-right: 1px solid rgb(238, 238, 238);
+    top: 1px;
+    right: -14px;
+}
+/* 상품후기 작성 창 */
+.reviewForm {
+	border-right: 1px solid rgb(238, 238, 238);
+    border-bottom: 1px solid rgb(238, 238, 238);
+    border-left: 1px solid rgb(238, 238, 238);
+}
+.reviewTextContent {
+	width: 100%;
+    padding: 20px;
+    height: 80px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+.reviewTextarea {
+	width: 100%;
+    height: 100%;
+    resize: none;
+    font-size: 13px;
+    line-height: 1.5;
+    border: white; 
+}
+.reviewRegis {
+	display: flex;
+    width: 100%;
+    height: 50px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+.numOfChar {
+	margin-left: 10px;
+    font-size: 12px;
+    color: rgb(136, 136, 136);
+}
+.reviewRegisBtn {
+	border: 1px solid rgb(238, 238, 238);
+    height: 32px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    padding: 0px 20px;
+    font-size: 13px;
+    color: rgb(136, 136, 136);
+}
+.reviewRegisBtn img {
+	margin-right: 4px;
+}
+/* 상품후기 */
+.reviewStar {
+	display: flex;
+    width: 100%;
+    height: 40px;
+    -webkit-box-align: center;
+    align-items: center;
+   /*  -webkit-box-pack: justify;
+    justify-content: space-between;  */
+    padding: 0px 10px;
+    border-bottom: 1px solid rgb(238, 238, 238);
+}
+.reviewStarWrap {
+	margin: auto;
+	display: flex;
+	align : center;
+}
+.reviewStarWrap > img {
+	cursor: pointer;
+	margin-right: 7px;
+}
+/* ************** 신고하기 모달창 ************** */
+#reviewModal_singo { 
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 10000; 
+    display: none;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+}
+.singoModalWrapR {
+   padding: 60px;
+    background: rgb(255, 255, 255);
+    width: 600px;
+}
+#singoModalTopR {
+   display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+#singoModalTopR > .title {
+    letter-spacing: 5.2px;
+    font-size: 26px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid rgb(33, 33, 33);
+    margin-bottom: 45px;
+}
+.singoCategoryR {
+   border-top: 1px solid rgb(238, 238, 238);
+}
+.singoCategoryR:last-child {
+   border-color: rgb(204, 204, 204);
+}
+.singoTitleR {
+   width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    color: rgb(102, 102, 102);
+    height: 60px;
+    font-size: 16px;
+    padding-left: 20px;
+}
+.singoTitleR > button {
+   display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+    padding: 0px 20px;   
+}
+.singoTitleR img {
+   transition: transform 0.4s ease-out 0s;
+}
+.singoContentR {
+    background: rgb(249, 249, 249);
+    padding: 0px 20px;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.3s ease-out 0s;   
+}
+.singoContentOtherR {
+    background: rgb(249, 249, 249);
+    padding: 0px 20px;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.3s ease-out 0s;   
+}
+.contentListR {
+   height: 30px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    font-size: 14px;
+}
+.contentListR button, .contentListR a {
+    /* color: rgb(247, 47, 51); */   
+    color: #0a58ca;   
+}
+/* 마지막 리스트(인풋박스있는) */
+.contentListInputR {
+   display: flex;
+    margin-top: 10px;
+    -webkit-box-align: center;
+    align-items: center;
+    border: 1px solid rgb(238, 238, 238);
+    width: 100%;
+    background: rgb(255, 255, 255);
+    font-size: 13px;
+}
+.contentListInputR input {
+   flex: 1 1 0%;
+    height: 36px;
+    padding: 0px 20px;   
+}
+.contentListInputR button {
+   border: 1px solid rgb(238, 238, 238);
+    height: 28px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 56px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    margin-right: 10px;
+    color: rgb(136, 136, 136);
+}
+/* 기타사유_textarea div 부분 */
+.contetnListTextareaR {
+   width: 100%;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;   
+}
+.contetnListTextareaR textarea {
+   width: 100%;
+    height: 80px;
+    resize: none;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(238, 238, 238);   
+}
+.contetnListTextareaR button {
+   border: 1px solid rgb(238, 238, 238);
+    height: 28px;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    width: 56px;
+    -webkit-box-pack: center;
+    justify-content: center;
+    color: rgb(136, 136, 136);
+    font-size: 13px;
+    background: rgb(255, 255, 255);
+}
+/* 신고 카테고리 클릭 */
+.singoTitleOpenR {
+   width: 100%;
+    display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    color: rgb(102, 102, 102);
+    height: 60px;
+    font-size: 16px;
+    padding-left: 20px;
+    background: rgb(249, 249, 249); /* 기존 신고 타이틀에서 추가된 */
+}
+.singoTitleOpenR img {
+   transform: rotate(180deg);
+   transition: transform 0.4s ease-out 0s;
+}
+.singoTitleOpenR button {
+   display: flex;
+    -webkit-box-align: center;
+    align-items: center;
+    height: 100%;
+    padding: 0px 20px;
+}
+.singoContentOpenR {
+   background: rgb(249, 249, 249);
+    padding: 0px 20px;
+    overflow: hidden;
+    transition: height 0.3s ease-out 0s;
+    height: 150px;
+}
+.singoContentOtherOpenR {
+   background: rgb(249, 249, 249);
+    padding: 0px 20px;
+    overflow: hidden;
+    transition: height 0.3s ease-out 0s;
+    height: 120px;
+}
+.directAskR {
+    border: 1px solid rgb(238, 238, 238);
+    color: rgb(136, 136, 136);
+    font-size: 13px;
+    height: 32px !important;
+} 
+.singoContentR {
+    background: rgb(249, 249, 249);
+    padding: 0px 20px;
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.3s ease-out 0s;
+}
+/* 거래 리스트 모달 */
+/* 판매완료 모달 */
+#reviewModal {
+	width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 3000;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    display: none;
+}
+.reviewModalWrap {
+	width: 23.5rem; /* 18.5 */
+    background: rgb(255, 255, 255);
+    padding: 1.5rem;
+    border-radius: 2px;
+}
+.reviewModalText {
+	white-space: pre-wrap;
+    word-break: keep-all;
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 1.5rem; /* 1.5 */
+    line-height: 1.4;
+}
+.reviewModalBtm {
+	display: flex;
+    flex-direction: row-reverse;
+}
+.reviewModalBtm > button:first-child {
+	margin-left: 0.5rem;
+}
+.reviewModalBtm > button {
+	flex: 1 1 0%;
+}
+.reviewModalBtm button {
+	height: 3rem;
+    text-align: center;
+    font-size: 1rem;
+}
+.reviewModalOkBtn {
+	color: rgb(255, 255, 255);
+    background: rgb(10, 88, 202);
+    font-weight: bold;
+}
+.reviewModalCancelBtn {
+	margin-top: 20px;
+	background-color: rgb(244, 244, 250);
+    color: rgb(114, 112, 127);
+}
+/* .itemDetail{
+	width: 100%;
+    height: 60px;
+    display: flex;
+    border: 1px solid rgb(238, 238, 238);
+    position: relative;
+    margin-top: 2px; 
+} */
+.itemImgWrap {
+	position: relative;
+    width: 60px; 
+    flex-shrink: 0;
+    height: 100%;
+}
+.itemImgWrap > img {
+	width: 60px;
+    height: 60px;
+    cursor: pointer;
+}
+.itemContentWrap {
+	width: 200px;
+    flex-shrink: 0;
+}
+.itemName, .itemName_Title {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-left: 8px;
+    cursor: pointer;
+}
+.itemName_Title {
+	font-size: 14px;
+	color: #6e6e6e;
+	padding-top: 4px;
+}
+.itemName {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+
+

@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="indexSQL">
+
+	<!-- 상품 목록 -->
+	<select id="getProductList" parameterType="java.util.HashMap" resultType="product">
+		SELECT * 
+		FROM 
+			( 
+			SELECT
+				rownum rn,
+				a.* 
+				FROM 
+				( SELECT 
+				product_seq,
+				mem_id,
+				cate_code,
+				product_subject,
+				product_content,
+				product_img1,
+				product_img2,
+				product_img3,
+				product_img4,
+				product_img5,
+				to_char(product_price, 'FM99,999,999') ||'원' as product_price ,
+				product_location, product_condition , product_delivery_fee ,
+				product_hashtag1,
+				product_hashtag2,
+				product_hashtag3,
+				product_hashtag4,
+				product_hashtag5,
+				product_view,
+				product_manage ,
+				ROUND((sysdate-product_logtime)*24*60) as product_logtime
+			FROM product
+			WHERE product_manage=1
+			ORDER BY product_logtime asc
+			) a
+		)
+		WHERE rn BETWEEN nvl(#{start},0) AND nvl(#{end},20) ORDER BY product_logtime asc
+	</select>
+
+
+	<!-- 찜한 상품 수 -->
+ 	<select id="wishProduct" parameterType="String" resultType="int">
+ 		select count(*) from wish where mem_id = #{id}
+ 	</select>
+
+ 	<!-- 검색 목록 WHERE 조건 -->	
+	<sql id="searchProductCnd">
+			AND p.product_manage = 1
+			AND p.mem_id = s.mem_id
+			<if test=" productSubject != null and productSubject != '' "> 
+			AND (p.product_subject Like '%' || #{productSubject} || '%'
+			OR p.product_hashtag1 Like '%' || #{productSubject} || '%'
+			OR p.product_hashtag2 Like '%' || #{productSubject} || '%'
+			OR p.product_hashtag3 Like '%' || #{productSubject} || '%'
+			OR p.product_hashtag4 Like '%' || #{productSubject} || '%'
+			OR p.product_hashtag5 Like '%' || #{productSubject} || '%')
+			</if> 
+			<if test=" storeName != null and storeName != '' "> 
+			AND s.store_nickname Like '%' || #{storeName} || '%'
+			</if>
+	</sql>
+ 	
+ 	<!-- 검색 목록 -->
+	<select id="searchProductList" parameterType="java.util.HashMap" resultType="product">
+		SELECT * 
+		FROM ( SELECT 
+				rownum rn,
+				a.* 
+				FROM
+				( SELECT
+					p.product_seq,
+					p.mem_id,
+					p.cate_code,
+					p.product_subject,
+					p.product_content,
+					p.product_img1,
+					p.product_img2,
+					p.product_img3,
+					p.product_img4,
+					p.product_img5,
+					to_char(p.product_price, 'FM99,999,999') ||'원' as product_price ,
+					p.product_location, 
+					p.product_condition , 
+					p.product_delivery_fee ,
+					p.product_hashtag1,
+					p.product_hashtag2,
+					p.product_hashtag3,
+					p.product_hashtag4,
+					p.product_hashtag5,
+					p.product_view,
+					p.product_manage ,
+					ROUND((sysdate - p.product_logtime)*24*60) as product_logtime,
+					s.store_nickname
+				FROM product p, store s
+				WHERE 1=1  
+				<include refid="searchProductCnd"></include>
+				ORDER BY 
+				<!-- 최신순 -->
+				<choose>
+					<when test=' order == "A" '> p.product_logtime desc </when>
+					<when test=' order == "B" '> p.product_view asc </when>
+					<when test=' order == "C" '> p.product_price asc </when>
+					<when test=' order == "D" '> p.product_price desc </when>
+					<otherwise>
+						p.product_logtime desc
+					</otherwise>
+				</choose>
+				
+				) a
+			)
+		WHERE rn BETWEEN nvl(#{start},1) AND nvl(#{end},20) 
+	</select>
+	
+	<select id="searchProductCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(0)
+		FROM product p, store s
+		WHERE 1=1
+		<include refid="searchProductCnd"></include>
+	</select>
+	
+	<select id="recentlyList" parameterType="java.util.List" resultType="product">
+		SELECT 
+				p.product_seq,
+				p.product_subject,
+				p.product_img1,
+				to_char(p.product_price, 'FM99,999,999') ||'원' as product_price
+		FROM product p
+		WHERE 1=1
+		<foreach collection="list" item="item" separator="," open="AND p.product_seq IN (" close=")">
+			#{item}
+		</foreach>
+		<foreach collection="list" item="item" separator="," index="index" open="ORDER BY" close="">
+			CASE WHEN p.product_seq = to_number(#{item}) THEN #{index} ELSE -1 END
+		</foreach>
+		
+	</select>
+
+
+	<!-- 카테고리 목록 -->
+	<select id="cateProductList" parameterType="java.util.HashMap" resultType="product">
+		SELECT * 
+		FROM ( SELECT 
+				rownum rn,
+				a.* 
+				FROM
+				( SELECT
+					p.product_seq,
+					p.mem_id,
+					p.cate_code,
+					p.product_subject,
+					p.product_content,
+					p.product_img1,
+					p.product_img2,
+					p.product_img3,
+					p.product_img4,
+					p.product_img5,
+					to_char(p.product_price, 'FM99,999,999') ||'원' as product_price ,
+					p.product_location, 
+					p.product_condition , 
+					p.product_delivery_fee ,
+					p.product_hashtag1,
+					p.product_hashtag2,
+					p.product_hashtag3,
+					p.product_hashtag4,
+					p.product_hashtag5,
+					p.product_view,
+					p.product_manage ,
+					ROUND((sysdate - p.product_logtime)*24*60) as product_logtime,
+					s.store_nickname
+				FROM product p, store s
+				WHERE p.mem_id = s.mem_id
+				<choose>
+					<when test=' cateState == "cate_parent" '> AND p.cate_code IN(select cate_code from category where cate_parent=#{cate_code}) </when>
+					<when test=' cateState == "cate_code" '> AND p.cate_code=#{cate_code} </when>
+				</choose>
+				ORDER BY 
+				<!-- 최신순 -->
+				<choose>
+					<when test=' order == "A" '> p.product_logtime desc </when>
+					<when test=' order == "B" '> p.product_view asc </when>
+					<when test=' order == "C" '> p.product_price asc </when>
+					<when test=' order == "D" '> p.product_price desc </when>
+					<otherwise>
+						p.product_logtime desc
+					</otherwise>
+				</choose>
+				
+				) a
+			)
+		WHERE rn BETWEEN nvl(#{start},1) AND nvl(#{end},20) 
+	</select>
+	
+	<select id="cateProductCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT count(0)
+		FROM product p, store s
+		WHERE p.mem_id = s.mem_id
+		<choose>
+			<when test=' cateState == "cate_parent" '> AND p.cate_code IN(select cate_code from category where cate_parent=#{cate_code}) </when>
+			<when test=' cateState == "cate_code" '> AND p.cate_code=#{cate_code} </when>
+		</choose>
+	</select>
+	
+	<select id="categoryList" resultType="category">
+		SELECT 
+			cate_code,
+			cate_name, 
+			cate_parent
+		 FROM category 
+	</select>
+	
+	<select id="cateParentName" resultType="String">
+		select cate_name from category where cate_code=#{cate_code}
+	</select>
+	
+
+	<select id="cateCodeName" resultType="String">
+		select cate_name from category where cate_code=#{cate_code}
+	</select>
+
+</mapper>

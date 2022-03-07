@@ -9,9 +9,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8640f4b8-cbf2-43ce-9326-d6c46439fa32" name="Changes" comment="initialize eureka-server&#10;git config --global core.autocrlf true">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="8640f4b8-cbf2-43ce-9326-d6c46439fa32" name="Changes" comment="ok&#10;git config --global core.autocrlf true">
+      <change beforePath="$PROJECT_DIR$/adminDiagram.ucls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/boardDiagram.ucls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/chatDiagram.ucls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/indexDiagram.ucls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/memberDiagram.ucls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/productDiagram.ucls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/storeDiagram.ucls" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -308,7 +313,7 @@
       <workItem from="1645063178922" duration="42000" />
       <workItem from="1646358262292" duration="223000" />
       <workItem from="1646642579891" duration="4598000" />
-      <workItem from="1646650143489" duration="322000" />
+      <workItem from="1646650143489" duration="793000" />
     </task>
     <task id="LOCAL-00001" summary="initialize eureka-server&#10;git config --global core.autocrlf true">
       <created>1646647797673</created>
@@ -317,7 +322,14 @@
       <option name="project" value="LOCAL" />
       <updated>1646647797673</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ok&#10;git config --global core.autocrlf true">
+      <created>1646650483852</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1646650483852</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +351,8 @@
     <MESSAGE value="commit" />
     <MESSAGE value="initialize eureka-server" />
     <MESSAGE value="initialize eureka-server&#10;git config --global core.autocrlf true" />
-    <option name="LAST_COMMIT_MESSAGE" value="initialize eureka-server&#10;git config --global core.autocrlf true" />
+    <MESSAGE value="ok&#10;git config --global core.autocrlf true" />
+    <option name="LAST_COMMIT_MESSAGE" value="ok&#10;git config --global core.autocrlf true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -18,7 +18,7 @@
 * 개발 환경
   * O/S - Windows 10 64bit
   * WAS - Apache Tomcat/9.0
-  * RDBMS - Oracle
+  * DBMS - Oracle
   * Pattern - Eclipse / SQL Developer
   * Github
 

@@ -20,14 +20,15 @@
   * WAS - Apache Tomcat/9.0
   * RDBMS - Oracle
   * Pattern - Eclipse / SQL Developer
-  * 
+  * Github
+
 * 사용 기술
   * JAVA, Spring Security, Websockets, Maven
   * Java Script, HTML, CSS, JSP, jQuery, AJAX, JSON, XML
   * Spring Framework, myBatis, Bootstrap
   * 카카오 로그인 API, 카카오 우편번호 API
-  * 그리고 Github :)
-<br/><br/><br/>
+  
+<br/><br/>
 
 
 ## 기능

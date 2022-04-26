@@ -64,16 +64,21 @@
 <img src="https://user-images.githubusercontent.com/74230238/165286141-04e40f9c-0ae5-4c8b-94f5-aa40d360c545.png" width="300" height="200">
 
  > 회원 가입 / 로그인
+
 <img src="https://user-images.githubusercontent.com/74230238/165283618-4796dc85-aee8-4767-9f35-8680856b4cea.png" width="200" height="250"> <img src="https://user-images.githubusercontent.com/74230238/165285851-19172adb-03e4-4eee-bc6c-924f6a4ee612.png" width="200" height="250"> <img src="https://user-images.githubusercontent.com/74230238/165286031-f5f7fd15-9658-4423-ad39-f266f7e729c7.png" width="300" height="200">
 
+
  > 상품 등록하기  /  상품 상세페이지  /  신고하기
+
 <img src="https://user-images.githubusercontent.com/74230238/165286497-b9801ee4-652b-40d7-a76e-92f3e04ed30f.png" width="300" height="200"> <img src="https://user-images.githubusercontent.com/73110638/108618990-8661b000-7465-11eb-9006-cd311f7d1940.png" width="200" height="250">
 <br/>
 
  > 검색
 <img src="https://user-images.githubusercontent.com/74230238/165286784-b7bd05e3-d4ee-4bad-af71-6898ed4f3c83.png" width="300" height="200">
 
+
  > 내 상점(후기, 찜, 구매내역, 내 상품 관리)
+
 <img src="https://user-images.githubusercontent.com/73110638/108618795-51a12900-7464-11eb-99fd-e643351c731b.png" width="300" height="200"> <img src="https://user-images.githubusercontent.com/73110638/108618902-09ced180-7465-11eb-8325-ae61e972428f.png" width="300" height="200"> <img src="https://user-images.githubusercontent.com/73110638/108618891-fde30f80-7464-11eb-8462-6f18ce54f355.png" width="300" height="200"> <img src="https://user-images.githubusercontent.com/73110638/108618893-ffacd300-7464-11eb-818f-b4a70f58466a.png" width="300" height="200"> <img src="https://user-images.githubusercontent.com/73110638/108618661-371a8000-7463-11eb-86f9-9aff1f87562e.png" width="300" height="200"> <img src="https://user-images.githubusercontent.com/73110638/108618765-1141ab00-7464-11eb-81ea-69e570f75854.png" width="300" height="200">
 <br/>
 
